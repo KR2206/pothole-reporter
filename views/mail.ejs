@@ -1,78 +1,144 @@
-<%- include("header") %>
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.101.0">
+    <title>Cover Template · Bootstrap v5.2</title>
+
+    <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/cover/"> -->
+
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+<!-- Map Links -->
+<script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?key=<%=api%>"></script>
+  <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+  
+
+
+
+    <style type="text/css">
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+
+      /* For map */
+      #map {
+      width: 100%;
+      height: 400px;
+    }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="styles.css" rel="stylesheet">
+  </head>
+  <body class="d-flex h-100 text-center text-bg-dark">
+    
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <h3 class="float-md-start mb-0">Pothole Reporter</h3>
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="/">Home</a>
+        <a class="nav-link fw-bold py-1 px-0" href="#">Github</a>
+      </nav>
+    </div>
+  </header>
 
   <main class="px-3">
-    <h1>Please enter the road address and your contact info</h1>
-    <p class="lead">Your location may not always be accurate</p>
-    
-    <!-- <main class="form-signin">
-        <form>
-          <h1 class="h3 mb-3 fw-normal">Please enter the road address and your contact info</h1>
-      
-          <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-          </div>
-          <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-          </div>
-      
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
-          <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-        </form>
-      </main> -->
-      <!-- <div class="row g-3 align-items-center">
-        <div class="col-auto">
-          <label for="inputNo" class="col-form-label">Contact Number(10 digits)</label>
-        </div>
-        <div class="col-auto">
-          <input type="number" pattern="[0-9]{10}" id="inputNo" class="form-control" aria-describedby="contactInfo">
-        </div>
-        <div class="col-auto">
-          <span id="contactInfo" class="form-text">
-            Will only be shared in mail.
-          </span>
-        </div>
-      </div>
+    <p class="lead">Please adjust your location precisely</p>
+  
 
-      <div class="row g-3 align-items-center">
-        <div class="col-auto">
-          <label for="inputNo" class="col-form-label">Road Address</label>
-        </div>
-        <div class="col-auto">
-          <input type="password" id="inputNo" class="form-control" aria-describedby="addInfo">
-        </div>
-        <div class="col-auto">
-          <span id="addInfo" class="form-text">
-            Will only be shared in mail for further followup.
-          </span>
-        </div>
-      </div> -->
-    
-      <!-- <form method="POST">
-        <div class="mb-3">
-          <label for="InputMail" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="InputMail" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">Will only be shared in mail</div>
-        </div>
-        <div class="mb-3">
-          <label for="InputContact" class="form-label">Contact Number(10 digits)</label>
-          <input type="text" pattern="[0-9]{10}" class="form-control" id="InputContact">
-        </div>
-        <div class="mb-3">
-            <label for="InputMail" class="form-label">Road address</label>
-            <input type="text" class="form-control" id="InputMail" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">Add nearest landmark, if possible</div>
-          </div>
-        <button type="submit" class="btn btn-secondary bg-white">Submit</button>
-      </form> -->
+    <!-- Map Starts -->
+    <div id="map"></div>
+<br>
+<button class="btn btn-lg btn-light fw-bold" id="confirmPosition">Confirm Position</button>
+<br>
+<p>On idle position: <span id="onIdlePositionView"></span></p>
+<p>On click position: <span id="onClickPositionView"></span></p>
+<script>
+  // Get element references
+  var confirmBtn = document.getElementById('confirmPosition');
+  var onClickPositionView = document.getElementById('onClickPositionView');
+  var onIdlePositionView = document.getElementById('onIdlePositionView');
 
-    </main>
+  // Initialize locationPicker plugin
+  var lp = new locationPicker('map', {
+    setCurrentPosition: true, // You can omit this, defaults to true
+  }, {
+    zoom: 15 // You can set any google map options here, zoom defaults to 15
+  });
+
+  // Listen to button onclick event
+  confirmBtn.onclick = function () {
+    // Get current location and show it in HTML
+    var location = lp.getMarkerPosition();
+    onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+  };
+
+  // Listen to map idle event, listening to idle event more accurate than listening to ondrag event
+  google.maps.event.addListener(lp.map, 'idle', function (event) {
+    // Get current location and show it in HTML
+    var location = lp.getMarkerPosition();
+    onIdlePositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+  });
+</script>
+
+</main>
+  
 
   <footer class="mt-auto text-white-50">
     <p>Made with ♥ by <a href="https://github.com/KR2206" class="text-white" target="_blank">KR2206</a>.</p>
