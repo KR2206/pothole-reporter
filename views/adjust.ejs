@@ -107,8 +107,14 @@
 <br>
 <button class="btn btn-lg btn-light fw-bold" id="confirmPosition">Confirm Position</button>
 <br>
-<p>On idle position: <span id="onIdlePositionView"></span></p>
-<p>On click position: <span id="onClickPositionView"></span></p>
+<p style="display:none">On idle position: <span id="onIdlePositionView"></span></p>
+<p style="display:none">On click position: <span id="onClickPositionView"></span></p>
+
+<form id="coords" method="POST">
+  <input id="latInput" type="hidden" name="lat" value="0"/>
+  <input id="longInput" type="hidden" name="long" value="0"/>
+</form>
+
 <script>
   // Get element references
   var confirmBtn = document.getElementById('confirmPosition');
@@ -127,6 +133,9 @@
     // Get current location and show it in HTML
     var location = lp.getMarkerPosition();
     onClickPositionView.innerHTML = 'The chosen location is ' + location.lat + ',' + location.lng;
+    document.getElementById("latInput").value=location.lat;
+    document.getElementById("longInput").value=location.lng;
+    document.getElementById("coords").submit();
   };
 
   // Listen to map idle event, listening to idle event more accurate than listening to ondrag event
