@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
-const https = require("https");
 const axios = require('axios').default;
 
 
@@ -18,12 +17,7 @@ let coords = {
 };
 let state="";
 
-app.get("/try",function(req,res){
-    https.get("https://nominatim.openstreetmap.org/reverse?format=json&lat=22.607599&lon=88.431927",function(response){
-        console.log(response.statusCode);
-    })
-})
-
+//--------------GET REQUESTS---------------------
 app.get("/", function (req, res) {
   //res.render("tweet",{handles:arr, link:"https%3A%2F%2Fwww.google.com%2Fmaps%2Fplace%2FFortis%2BHospital.%2F%4022.5499828%2C88.3785368%2C15z%2Fdata%3D%214m5%213m4%211s0x3a0277f15cc181b9%3A0xf6b86895953bf55c%218m2%213d22.5439494%214d88.3806109"});
   arr = [];
@@ -32,14 +26,25 @@ app.get("/", function (req, res) {
   state="";
   res.render("home");
 });
+
 app.get("/adjust", function (req, res) {
   res.render("adjust", { api: process.env.MAPS_API });
 });
 
+app.get("/tweet",function(req,res){
+  res.render("tweet",{handles:arr,link:"google.com"});
+})
+app.get("/thanks",function(req,res){
+  res.render("thanks");
+})
+
+
+//--------------POST REQUESTS ----------------------------------
 app.post("/", function (req, res) {
   // console.log(req.body);
   res.redirect("/adjust");
 });
+
 app.post("/adjust", function (req, res) {
   console.log(req.body);
   coords.lat = req.body.lat;

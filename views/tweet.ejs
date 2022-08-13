@@ -1,7 +1,19 @@
 <%- include("header") %>
-<p>Amongus</p>
+
+<main class="px-3">
+<h1>Time to Tweet?</h1>
 
 <a href="https://twitter.com/intent/tweet?text=A%20pothole%20has%20been%20discovered%20in%20the%20given%20location.%20Requesting%20the%20concerned%20authorities%20to%20kindly%20do%20the%20needful%20to%20fill%20it%20ASAP.%20<%handles.forEach((handle)=>{%>%40<%=handle%>%20<%})%><%=link%>
-" target="_blank">Tweet</a>
-
+" target="_blank" class="btn btn-lg btn-light fw-bold" onclick="change()">Tweet</a>
+<a id="nxt" class="btn btn-lg btn-light fw-bold" href="/thanks">Skip</a>
+</main>
+<footer class="mt-auto text-white-50">
+    <p>Made with ♥ by <a href="https://github.com/KR2206" class="text-white" target="_blank">KR2206</a>.</p>
+</footer>
+</div>
+<script>
+  function change(){
+    document.getElementById("nxt").innerText = "Done";
+  }
+</script>
 <%- include("footer") %>
