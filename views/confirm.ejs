@@ -1,0 +1,20 @@
+<%- include("header") %>
+
+  <main class="px-3">
+    <h1>Detected your state/UT as: <%=state%></h1>
+    <p class="lead">Mail will be sent to: <%=mails%></p>
+    <p class="lead">
+    
+      <form method="POST" action="/confirm">
+        <button name="btn" value="yes" type="submit" class="btn btn-lg btn-success fw-bold">✔️Send</button>
+        <button name="btn" value="no" type="submit" class="btn btn-lg btn-warning fw-bold">❌Skip</button>
+      </form>
+    </p>
+  </main>
+
+  <footer class="mt-auto text-white-50">
+    <p>Made with ♥ by <a href="https://github.com/KR2206" class="text-white" target="_blank">KR2206</a>.</p>
+  </footer>
+</div>
+    
+<%- include("footer") %>

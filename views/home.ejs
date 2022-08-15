@@ -4,12 +4,8 @@
     <h1>Ready to report this nuisance 1 pothole at a time?</h1>
     <p class="lead">We need your location to find the details of your local authorities to contact. Please click allow in the next step.</p>
     <p class="lead">
-      <!-- <button class="btn btn-lg btn-secondary fw-bold border-white bg-white">Let's Begin!!!</button> -->
     
-      <form method="POST" action="/" id="geoloc">
-        <!-- <input id="lat" type="hidden" name="lat" value="0"/>
-        <input id="long" type="hidden" name="long" value="0"/> -->
-        <!-- <button type="submit" class="btn btn-lg btn-secondary fw-bold border-white bg-white" disabled>Let's Begin!!!</button> -->
+      <form method="POST" action="/">
         <button id="sub" type="submit" class="btn btn-lg btn-light fw-bold">Allow Access</button>
       </form>
     </p>
@@ -24,7 +20,6 @@
     getLocation();    
     function getLocation() {
         if (navigator.geolocation) {            
-            //navigator.geolocation.getCurrentPosition(updatePos);
             document.getElementById("sub").innerText="Let's Begin!!!";
         document.getElementById("sub").disabled=false;            
         }
@@ -33,16 +28,6 @@
         document.getElementById("sub").disabled=false;
         }
     }
-
-    // function updatePos(position) {
-    //     document.getElementById("sub").innerText="Let's Begin!!!";
-    //     document.getElementById("sub").disabled=false;
-        // document.getElementById("lat").value = position.coords.latitude;
-        // document.getElementById("long").value = position.coords.longitude;
-
-        // console.log(position.coords.latitude);
-        // console.log(position.coords.longitude);
-    // }
 
     </script>
 

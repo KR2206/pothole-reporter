@@ -2,9 +2,9 @@
 
 <main class="px-3">
 <h1>Time to Tweet?</h1>
-
-<a href="https://twitter.com/intent/tweet?text=A%20pothole%20has%20been%20discovered%20in%20the%20given%20location.%20Requesting%20the%20concerned%20authorities%20to%20kindly%20do%20the%20needful%20to%20fill%20it%20ASAP.%20<%handles.forEach((handle)=>{%>%40<%=handle%>%20<%})%><%=link%>
-" target="_blank" class="btn btn-lg btn-light fw-bold" onclick="change()">Tweet</a>
+<p class="lead">Appropriate handles will be tagged for you.</p>
+<a href="https://twitter.com/intent/tweet?text=A%20pothole%20has%20been%20discovered%20at%20the%20given%20location.%20Requesting%20the%20concerned%20authorities%20to%20do%20the%20needful%20to%20fill%20it%20ASAP.%20<%handles.forEach((handle)=>{%>%40<%=handle%>%20<%})%><%=link%>
+" target="_blank" class="btn btn-lg btn-primary fw-bold" onclick="change()">Tweet</a>
 <a id="nxt" class="btn btn-lg btn-light fw-bold" href="/thanks">Skip</a>
 </main>
 <footer class="mt-auto text-white-50">
