@@ -19,19 +19,20 @@ const stateSchema = new mongoose.Schema({
 })
 const State = mongoose.model("state",stateSchema);
 
-let handles = ["multiversus","amongus"];
-let mails = ["a@b.com","b@c.com"];
+let handles;
+let mails;
 let coords = {
   lat: 0,
   long: 0,
 };
-let chosenState="Telangana";
+let chosenState;
 const password = process.env.PASSWORD;
-let mongoURL = process.env.MONGOURL
+const mongoURL = process.env.MONGOURL;
+const map_url = "https://www.google.com/maps/search/?api=1&query="
+
 
 //--------------GET REQUESTS---------------------
 app.get("/", function (req, res) {
-  //res.render("tweet",{handles:handles, link:"https%3A%2F%2Fwww.google.com%2Fmaps%2Fplace%2FFortis%2BHospital.%2F%4022.5499828%2C88.3785368%2C15z%2Fdata%3D%214m5%213m4%211s0x3a0277f15cc181b9%3A0xf6b86895953bf55c%218m2%213d22.5439494%214d88.3806109"});
   handles = [];
   coords.lat = 0;
   coords.long = 0;
@@ -48,7 +49,7 @@ app.get("/confirm",function(req,res){
 
     
 
-    State.findOne({state: "test"},function(err,doc){
+    State.findOne({state: chosenState},function(err,doc){
         if(err){
             console.log(err);
         }
@@ -72,7 +73,8 @@ app.get("/err",function(req,res){
 })
 
 app.get("/tweet",function(req,res){
-  res.render("tweet",{handles:handles,link:"google.com"});
+  let completeURL = "https%3A%2F%2Fwww.google.com%2Fmaps%2Fsearch%2F%3Fapi%3D1%26query%3D"+coords.lat+"%2C"+coords.long;
+  res.render("tweet",{handles:handles,link:completeURL});
 })
 app.get("/thanks",function(req,res){
   res.render("thanks");
@@ -81,7 +83,6 @@ app.get("/thanks",function(req,res){
 
 //--------------POST REQUESTS ----------------------------------
 app.post("/", function (req, res) {
-  // console.log(req.body);
   res.redirect("/adjust");
 });
 
@@ -124,8 +125,8 @@ app.post("/confirm",function(req,res){
       },
       from: "potholereporter@outlook.com",
       to: mails,
-      subject: "Test",
-      text: "Hello\nnice",
+      subject: "Reporting a pothole on a road under your jurisdiction",
+      text: "Dear Sir/Madam,\nThis mail has been sent to you to make you aware about potholes appearing on a road under your jurisdiction. As you may be aware, potholes are extremely dangerous and may cause serious accidents if not filled at the earliest. Hence I request you to kindly look into this issue and mobilise concerned authorities to fill it up quickly. The google map link is given below for reference and is accurate about where the pothole is located\n\nLink:-"+map_url+coords.lat+"%2C"+coords.long+"\n\nThanking You,\nYours truly,\nA concerned citizen\nPlease dont reply to this mail as it is an automated message",
       onError: (e) => console.log(e),
       onSuccess: (i) => console.log(i)
 
